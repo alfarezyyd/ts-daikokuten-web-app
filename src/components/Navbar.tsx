@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import {AcmeLogo} from "../AcmeLogo.jsx";
 
-export default function NavbarComponent() {
+export default function NavbarComponent({togglePage}: { togglePage: () => void }) {
   return (
     <Navbar>
       <NavbarBrand>
@@ -22,20 +22,16 @@ export default function NavbarComponent() {
 
       <NavbarContent className="sm:flex gap-4" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="secondary">
-            Customers
+          <Link color="foreground" href="/" onClick={togglePage}>
+            Home
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
+          <Link color="foreground" href="" onClick={togglePage}>
+            Cart
           </Link>
         </NavbarItem>
+
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
