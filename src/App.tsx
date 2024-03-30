@@ -7,6 +7,7 @@ import Cart from "./app/Cart.tsx";
 import Home from "./app/Home.tsx";
 import {useNavigate} from "react-router-dom";
 import React, {Dispatch, SetStateAction, useState} from "react";
+import Summary from "./components/Summary.tsx";
 
 
 function App() {
@@ -49,6 +50,11 @@ function App() {
             </> :
             <div className="md:container md:mx-auto mt-10 text-black">
               <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart}/>
+              <div className="mt-10 flex flex-row-reverse columns-lg">
+                <div>
+                  <Summary itemCarts={itemCarts}/>
+                </div>
+              </div>
             </div>
           } {/* Menampilkan Home atau Cart berdasarkan state */}
         </div>
