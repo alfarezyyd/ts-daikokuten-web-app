@@ -21,7 +21,7 @@ export default function CardItemCart({itemInfo}: {
               className="object-cover"
               height={200}
               shadow="md"
-              src="/food/ati-ampela.png"
+              src={"assets/food/" + itemInfo.image}
               width="100%"
             />
           </div>
