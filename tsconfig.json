@@ -31,6 +31,5 @@
     }
   ],
   "module": "esnext",
-  "target": "ESNext",
   "moduleResolution": "Node"
 }

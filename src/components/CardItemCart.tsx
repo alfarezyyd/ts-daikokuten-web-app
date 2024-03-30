@@ -1,6 +1,6 @@
 import {Button, Card, CardBody, Image} from "@nextui-org/react";
 import "../globals.css"
-import ItemInfo from "../../public/interface/ItemInfo.ts";
+import ItemInfo from "../interface/ItemInfo.ts";
 
 
 export default function CardItemCart({itemInfo}: {

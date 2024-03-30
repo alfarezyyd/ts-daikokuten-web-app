@@ -1,6 +1,6 @@
 import {Button, Card, CardBody, Image} from "@nextui-org/react";
 import "../globals.css"
-import ItemInfo from "../../public/interface/ItemInfo.ts";
+import ItemInfo from "../interface/ItemInfo.ts";
 import {Dispatch, SetStateAction} from "react";
 
 
@@ -24,7 +24,7 @@ export default function CardItem({itemInfo, itemCarts, setItemCarts}: {
               className="object-cover"
               height={200}
               shadow="md"
-              src="/food/ati-ampela.png"
+              src={"assets/food/" + itemInfo.image}
               width="100%"
             />
           </div>
@@ -36,7 +36,7 @@ export default function CardItem({itemInfo, itemCarts, setItemCarts}: {
               <Button
                 className={"bg-primary text-white"}
                 color="primary"
-                radius="full" 
+                radius="full"
                 size="sm"
                 variant={"bordered"}
                 onClick={() => {
