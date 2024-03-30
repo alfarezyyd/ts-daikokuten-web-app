@@ -4,11 +4,11 @@ import ItemInfo from "../interface/ItemInfo.ts";
 import {Dispatch, SetStateAction} from "react";
 
 
-export default function CardItem({itemInfo, itemCarts, setItemCarts}: {
+export default function CardItem({itemInfo, itemCarts, setItemCarts}: Readonly<{
   itemInfo: ItemInfo,
   itemCarts: string[],
   setItemCarts: Dispatch<SetStateAction<string[]>>,
-}) {
+}>) {
 
   return (
     <Card

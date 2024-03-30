@@ -14,6 +14,13 @@ function App() {
   const [isHome, setIsHome] = useState(true); // State untuk mengontrol tampilan home atau cart
   const [itemCarts, setItemCarts]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>([])
 
+  const deleteItemFromCart = (itemName: string) => {
+    setItemCarts(prevItemCarts =>
+      prevItemCarts.filter(item => item !== itemName)
+    );
+  };
+
+
   const togglePage = () => {
     if (isHome) {
       navigate('/cart'); // Navigasi ke halaman cart jika pengguna berada di halaman home
@@ -31,11 +38,19 @@ function App() {
           <NavbarComponent togglePage={togglePage}/>
         </div>
         <div className="">
-          <Heading/>
-          <CardTab/>
-          <div className="md:container md:mx-auto">
-            {isHome ? <Home itemCarts={itemCarts} setItemCarts={setItemCarts}/> : <Cart itemCarts={itemCarts}/>} {/* Menampilkan Home atau Cart berdasarkan state */}
-          </div>
+
+          {isHome ?
+            <>
+              <Heading/>
+              <CardTab/>
+              <div className="md:container md:mx-auto">
+                <Home itemCarts={itemCarts} setItemCarts={setItemCarts}/> :
+              </div>
+            </> :
+            <div className="md:container md:mx-auto mt-10 text-black">
+              <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart}/>
+            </div>
+          } {/* Menampilkan Home atau Cart berdasarkan state */}
         </div>
       </div>
     </NextUIProvider>
