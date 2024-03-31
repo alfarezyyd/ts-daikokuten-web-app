@@ -16,10 +16,10 @@ export default function Heading() {
           deleteSpeed={140}
           delaySpeed={3000}
           words={[
-            "Luxurious Hotel",
-            "Cozy Flight",
-            "Stylish Flight",
-            "Exclusive Hotel",
+            "Ayam Balado",
+            "Kentang Balado",
+            "Tumis Toge",
+            "Tumis Wortel",
           ]}
         />
       </div>
