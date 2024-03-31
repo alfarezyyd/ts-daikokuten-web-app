@@ -13,21 +13,23 @@ import Summary from "./components/Summary.tsx";
 function App() {
   const navigate = useNavigate();
   const [isHome, setIsHome] = useState(true); // State untuk mengontrol tampilan home atau cart
-  const [itemCarts, setItemCarts]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>([])
+  const [itemCarts, setItemCarts]: [itemCarts: { [key: string]: number }, setIemCarts: Dispatch<SetStateAction<{ [key: string]: number }>>] = useState<{ [key: string]: number }>({});
   const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan nilai pencarian
 
 
   const deleteItemFromCart = (itemName: string) => {
-    setItemCarts(prevItemCarts =>
-      prevItemCarts.filter(item => item !== itemName)
-    );
+    const updatedItemCarts = {...itemCarts};
+    delete updatedItemCarts[itemName];
+    setItemCarts(updatedItemCarts);
   };
+
 
   const togglePage = () => {
     if (isHome) {
       navigate('/cart'); // Navigasi ke halaman cart jika pengguna berada di halaman home
     }
   };
+  const itemCartsKeys = Object.keys(itemCarts);
 
   React.useEffect(() => {
     setIsHome(location.pathname === '/');
@@ -51,10 +53,10 @@ function App() {
             </>
           ) : (
             <div className="lg:container lg:mx-auto md:container md:mx-auto sm:container sm:mx-auto mt-10 text-black">
-              <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart}/>
+              <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart} setItemCarts={setItemCarts}/>
               <div className="mt-10 flex flex-row-reverse columns-lg">
                 <div>
-                  <Summary key={itemCarts.join()} itemCarts={itemCarts}/>
+                  <Summary key={itemCartsKeys.join()} itemCarts={itemCarts}/>
                 </div>
               </div>
             </div>

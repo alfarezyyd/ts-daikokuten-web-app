@@ -6,8 +6,8 @@ import {Dispatch, SetStateAction} from "react";
 
 export default function CardItem({itemInfo, itemCarts, setItemCarts}: Readonly<{
   itemInfo: ItemInfo,
-  itemCarts: string[],
-  setItemCarts: Dispatch<SetStateAction<string[]>>,
+  itemCarts: { [key: string]: number },
+  setItemCarts: Dispatch<SetStateAction<{ [key: string]: number }>>,
 }>) {
 
   return (
@@ -40,7 +40,12 @@ export default function CardItem({itemInfo, itemCarts, setItemCarts}: Readonly<{
                 size="sm"
                 variant={"bordered"}
                 onClick={() => {
-                  setItemCarts([...itemCarts, itemInfo.name as string])
+                  // Menyalin objek itemCarts ke objek baru
+                  const updatedItemCarts = {...itemCarts};
+                  // Menambahkan atau memperbarui kunci dengan nama item
+                  updatedItemCarts[itemInfo.name] = 1;
+                  // Mengatur nilai itemCarts dengan objek baru
+                  setItemCarts(updatedItemCarts);
                 }}
               >Add to Cart
               </Button>

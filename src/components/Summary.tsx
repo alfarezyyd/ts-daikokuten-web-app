@@ -2,16 +2,22 @@ import {useEffect, useState} from "react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
 import {FoodData} from "../app/FoodData.ts";
 
-export default function Summary({itemCarts}: { itemCarts: string[] }) {
+export default function Summary({itemCarts}: Readonly<{ itemCarts: { [key: string]: number } }>) {
   const [totalPriceItem, setTotalPriceItem] = useState<number>(0);
 
   useEffect(() => {
-    const filteredData = FoodData.filter(item => itemCarts.includes(item.name as string));
-    const totalPrice = filteredData.reduce((total, item) => {
-      return total + (item.price as number);
-    }, 0);
+    // Hitung total harga dan total kuantitas
+    let totalPrice = 0;
+    Object.entries(itemCarts).forEach(([itemName, quantity]) => {
+      const item = FoodData.find((food) => food.name === itemName);
+      if (item) {
+        totalPrice += item.price * quantity;
+      }
+    });
     setTotalPriceItem(totalPrice);
   }, [itemCarts]);
+
+
   return (
     <Table hideHeader aria-label="Example static collection table">
       <TableHeader>

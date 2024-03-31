@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import {
   Table,
   TableHeader,
@@ -12,19 +12,34 @@ import {
 import {DeleteIcon} from "../components/DeleteIcon.tsx";
 import ItemInfo from "../interface/ItemInfo.ts";
 import {FoodData} from "./FoodData.ts";
+import Counter from "../components/Counter.tsx";
 
 const columns = [
   {name: "IMAGE", uid: "image"},
   {name: "NAME", uid: "name"},
+  {name: "QUANTITY", uid: "quantity"},
   {name: "PRICE", uid: "price"},
   {name: "ACTIONS", uid: "actions"},
 ];
-export default function Cart({itemCarts, deleteItemFromCart}: Readonly<{
-                               itemCarts: string[],
-                               deleteItemFromCart: (itemName: string) => void
+export default function Cart({itemCarts, deleteItemFromCart, setItemCarts}: Readonly<{
+                               itemCarts: { [key: string]: number },
+                               deleteItemFromCart: (itemName: string) => void,
+                               setItemCarts: Dispatch<SetStateAction<{
+                                 [key: string]: number
+                               }>>
                              }>
 ) {
-  const filteredArray = FoodData.filter(item => itemCarts.includes(item.name));
+  const filteredArray = FoodData.filter(
+    item => (Object.keys(itemCarts).includes(item.name))
+  );
+
+  const updateQuantity = (itemName: string, newQuantity: number) => {
+    setItemCarts(prevState => ({
+      ...prevState,
+      [itemName]: newQuantity
+    }));
+  };
+
 
   const renderCell = React.useCallback((item: ItemInfo, columnKey: React.Key) => {
     const cellValue = item[columnKey as keyof ItemInfo];
@@ -49,6 +64,13 @@ export default function Cart({itemCarts, deleteItemFromCart}: Readonly<{
             <p className="text-bold text-sm capitalize text-center">{cellValue}</p>
           </div>
         );
+      case "quantity":
+        return (
+          <div className="flex justify-center">
+            <Counter value={itemCarts[item.name] || 0}
+                     onChange={(newQuantity: number) => updateQuantity(item.name, newQuantity)}/>
+          </div>
+        )
       case "price":
         return (
           <div className="flex justify-center">

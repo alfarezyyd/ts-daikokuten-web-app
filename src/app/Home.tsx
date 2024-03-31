@@ -4,11 +4,13 @@ import ItemInfo from "../interface/ItemInfo.ts";
 import {Dispatch, SetStateAction, useEffect, useState} from "react";
 
 export default function Home({itemCarts, setItemCarts, searchTerm}: Readonly<{
-  itemCarts: string[],
-  setItemCarts: Dispatch<SetStateAction<string[]>>,
+  itemCarts: { [key: string]: number },
+  setItemCarts: Dispatch<SetStateAction<{ [key: string]: number }>>,
   searchTerm: string
 }>) {
-  const filteredArray = FoodData.filter(item => !itemCarts.includes(item.name));
+  const filteredArray = FoodData.filter(
+    item => !(item.name in itemCarts)
+  );
   const [key, setKey] = useState(0); // State untuk mengubah key
   useEffect(() => {
     setKey(prevKey => prevKey + 1);
