@@ -1,5 +1,5 @@
 export default interface ItemInfo {
-  name?: string;
-  price?: number;
-  image?: string;
+  name: string;
+  price: number;
+  image: string;
 }

@@ -62,7 +62,7 @@ export const FoodData: ItemInfo[] = [
     image: "sop ayam.png"
   },
   {
-    name: "tahu goreng",
+    name: "Tahu Goreng",
     price: 17000,
     image: "tahu goreng.png"
   },

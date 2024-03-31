@@ -14,13 +14,13 @@ function App() {
   const navigate = useNavigate();
   const [isHome, setIsHome] = useState(true); // State untuk mengontrol tampilan home atau cart
   const [itemCarts, setItemCarts]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>([])
+  const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan nilai pencarian
 
   const deleteItemFromCart = (itemName: string) => {
     setItemCarts(prevItemCarts =>
       prevItemCarts.filter(item => item !== itemName)
     );
   };
-
 
   const togglePage = () => {
     if (isHome) {
@@ -40,27 +40,28 @@ function App() {
         </div>
         <div className="">
 
-          {isHome ?
+          {isHome ? (
             <>
               <Heading/>
-              <CardTab/>
+              <CardTab setSearchTerm={setSearchTerm}/>
               <div className="md:container md:mx-auto">
-                <Home itemCarts={itemCarts} setItemCarts={setItemCarts}/> :
+                <Home itemCarts={itemCarts} setItemCarts={setItemCarts} searchTerm={searchTerm}/>
               </div>
-            </> :
+            </>
+          ) : (
             <div className="md:container md:mx-auto mt-10 text-black">
               <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart}/>
               <div className="mt-10 flex flex-row-reverse columns-lg">
                 <div>
-                  <Summary itemCarts={itemCarts}/>
+                  <Summary key={itemCarts.join()} itemCarts={itemCarts}/>
                 </div>
               </div>
             </div>
-          } {/* Menampilkan Home atau Cart berdasarkan state */}
+          )}
         </div>
       </div>
     </NextUIProvider>
   );
 }
 
-export default App
+export default App;
