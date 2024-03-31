@@ -8,12 +8,15 @@ import Home from "./app/Home.tsx";
 import {useNavigate} from "react-router-dom";
 import React, {Dispatch, SetStateAction, useState} from "react";
 import Summary from "./components/Summary.tsx";
+import SummaryModal from "./components/SummaryModal.tsx";
 
 
 function App() {
   const navigate = useNavigate();
   const [isHome, setIsHome] = useState(true); // State untuk mengontrol tampilan home atau cart
-  const [itemCarts, setItemCarts]: [itemCarts: { [key: string]: number }, setIemCarts: Dispatch<SetStateAction<{ [key: string]: number }>>] = useState<{ [key: string]: number }>({});
+  const [itemCarts, setItemCarts]: [itemCarts: { [key: string]: number }, setIemCarts: Dispatch<SetStateAction<{
+    [key: string]: number
+  }>>] = useState<{ [key: string]: number }>({});
   const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan nilai pencarian
 
 
@@ -57,6 +60,7 @@ function App() {
               <div className="mt-10 flex flex-row-reverse columns-lg">
                 <div>
                   <Summary key={itemCartsKeys.join()} itemCarts={itemCarts}/>
+                  <SummaryModal setItemCarts={setItemCarts}/>
                 </div>
               </div>
             </div>
