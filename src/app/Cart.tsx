@@ -24,7 +24,7 @@ export default function Cart({itemCarts, deleteItemFromCart}: Readonly<{
                                deleteItemFromCart: (itemName: string) => void
                              }>
 ) {
-  const filteredArray = FoodData.filter(item => itemCarts.includes(item.name as string));
+  const filteredArray = FoodData.filter(item => itemCarts.includes(item.name));
 
   const renderCell = React.useCallback((item: ItemInfo, columnKey: React.Key) => {
     const cellValue = item[columnKey as keyof ItemInfo];
@@ -66,7 +66,7 @@ export default function Cart({itemCarts, deleteItemFromCart}: Readonly<{
         return (
           <div className="relative flex justify-center gap-2">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon onClick={() => deleteItemFromCart(item.name as string)}/>
+                <DeleteIcon onClick={() => deleteItemFromCart(item.name)}/>
               </span>
           </div>
         );

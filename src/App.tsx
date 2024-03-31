@@ -16,6 +16,7 @@ function App() {
   const [itemCarts, setItemCarts]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>([])
   const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan nilai pencarian
 
+
   const deleteItemFromCart = (itemName: string) => {
     setItemCarts(prevItemCarts =>
       prevItemCarts.filter(item => item !== itemName)
@@ -44,12 +45,12 @@ function App() {
             <>
               <Heading/>
               <CardTab setSearchTerm={setSearchTerm}/>
-              <div className="md:container md:mx-auto">
+              <div className="lg:container lg:mx-auto md:container md:mx-auto sm:container sm:mx-auto">
                 <Home itemCarts={itemCarts} setItemCarts={setItemCarts} searchTerm={searchTerm}/>
               </div>
             </>
           ) : (
-            <div className="md:container md:mx-auto mt-10 text-black">
+            <div className="lg:container lg:mx-auto md:container md:mx-auto sm:container sm:mx-auto mt-10 text-black">
               <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart}/>
               <div className="mt-10 flex flex-row-reverse columns-lg">
                 <div>

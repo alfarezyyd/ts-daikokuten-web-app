@@ -42,13 +42,13 @@ body {
 }
 
 ::-webkit-scrollbar-button {
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
 }
 
 ::-webkit-scrollbar-thumb {
     background: #075985;
-    border: 0px none #ffedd5;
+    border: 0 none #ffedd5;
     border-radius: 50px;
 }
 
@@ -62,8 +62,8 @@ body {
 
 ::-webkit-scrollbar-track {
     background: #ffedd5;
-    border: 0px none #ffedd5;
-    border-radius: 50px;
+    border: 0 none #ffedd5;
+    border-radius: 50;
 }
 
 ::-webkit-scrollbar-track:hover {
@@ -76,4 +76,18 @@ body {
 
 ::-webkit-scrollbar-corner {
     background: transparent;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.custom-number-input input:focus {
+    outline: none !important;
+}
+
+.custom-number-input button:focus {
+    outline: none !important;
 }

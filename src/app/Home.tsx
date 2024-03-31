@@ -8,7 +8,7 @@ export default function Home({itemCarts, setItemCarts, searchTerm}: Readonly<{
   setItemCarts: Dispatch<SetStateAction<string[]>>,
   searchTerm: string
 }>) {
-  const filteredArray = FoodData.filter(item => !itemCarts.includes(item.name as string));
+  const filteredArray = FoodData.filter(item => !itemCarts.includes(item.name));
   const [key, setKey] = useState(0); // State untuk mengubah key
   useEffect(() => {
     setKey(prevKey => prevKey + 1);
