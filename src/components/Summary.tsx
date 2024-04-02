@@ -14,6 +14,7 @@ export default function Summary({itemCarts}: Readonly<{ itemCarts: { [key: strin
         totalPrice += item.price * quantity;
       }
     });
+    console.log(itemCarts)
     setTotalPriceItem(totalPrice);
   }, [itemCarts]);
 

@@ -19,14 +19,6 @@ function App() {
   }>>] = useState<{ [key: string]: number }>({});
   const [searchTerm, setSearchTerm] = useState(""); // State untuk menyimpan nilai pencarian
 
-
-  const deleteItemFromCart = (itemName: string) => {
-    const updatedItemCarts = {...itemCarts};
-    delete updatedItemCarts[itemName];
-    setItemCarts(updatedItemCarts);
-  };
-
-
   const togglePage = () => {
     if (isHome) {
       navigate('/cart'); // Navigasi ke halaman cart jika pengguna berada di halaman home
@@ -45,7 +37,6 @@ function App() {
           <NavbarComponent togglePage={togglePage}/>
         </div>
         <div className="">
-
           {isHome ? (
             <>
               <Heading/>
@@ -56,7 +47,7 @@ function App() {
             </>
           ) : (
             <div className="lg:container lg:mx-auto md:container md:mx-auto sm:container sm:mx-auto mt-10 text-black">
-              <Cart itemCarts={itemCarts} deleteItemFromCart={deleteItemFromCart} setItemCarts={setItemCarts}/>
+              <Cart itemCarts={itemCarts} setItemCarts={setItemCarts}/>
               <div className="mt-10 flex flex-row-reverse columns-lg">
                 <div>
                   <Summary key={itemCartsKeys.join()} itemCarts={itemCarts}/>

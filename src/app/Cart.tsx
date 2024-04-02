@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction} from "react";
+import React, {Dispatch, SetStateAction, useEffect, useState} from "react";
 import {
   Table,
   TableHeader,
@@ -21,17 +21,33 @@ const columns = [
   {name: "PRICE", uid: "price"},
   {name: "ACTIONS", uid: "actions"},
 ];
-export default function Cart({itemCarts, deleteItemFromCart, setItemCarts}: Readonly<{
+export default function Cart({itemCarts, setItemCarts}: Readonly<{
                                itemCarts: { [key: string]: number },
-                               deleteItemFromCart: (itemName: string) => void,
                                setItemCarts: Dispatch<SetStateAction<{
                                  [key: string]: number
                                }>>
                              }>
 ) {
-  const filteredArray = FoodData.filter(
-    item => (Object.keys(itemCarts).includes(item.name))
-  );
+  const [filteredArray, setFilteredArray] = useState<ItemInfo[]>(
+    FoodData.filter(
+      item => (Object.keys(itemCarts).includes(item.name))
+    )
+  )
+
+  const handleDeleteItem = (itemName: string) => {
+    const updatedItemCarts = {...itemCarts};
+    delete updatedItemCarts[itemName];
+    delete itemCarts[itemName]
+    setItemCarts(updatedItemCarts);
+    setFilteredArray(filteredArray => filteredArray.filter(item => item.name !== itemName));
+  };
+
+  useEffect(() => {
+    const filteredItems = FoodData.filter(
+      item => (Object.keys(itemCarts).includes(item.name))
+    );
+    setFilteredArray(filteredItems);
+  }, [itemCarts]);
 
   const updateQuantity = (itemName: string, newQuantity: number) => {
     setItemCarts(prevState => ({
@@ -88,7 +104,7 @@ export default function Cart({itemCarts, deleteItemFromCart, setItemCarts}: Read
         return (
           <div className="relative flex justify-center gap-2">
               <span className="text-lg text-danger cursor-pointer active:opacity-50">
-                <DeleteIcon onClick={() => deleteItemFromCart(item.name)}/>
+                <DeleteIcon onClick={() => handleDeleteItem(item.name)}/>
               </span>
           </div>
         );
