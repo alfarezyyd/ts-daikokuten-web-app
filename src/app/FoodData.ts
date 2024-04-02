@@ -72,7 +72,7 @@ export const FoodData: ItemInfo[] = [
     image: "telur.png"
   },
   {
-    name: "tempe",
+    name: "Tempe",
     price: 17000,
     image: "tempe.png"
   },
