@@ -30,4 +30,4 @@ Node dan Node Package Manager
 ### Deploy on Vercel
 Teman-teman dapat melihat website Daikokuten tanpa perlu <br>
 menjalankannya di local dengan cara mengunjungi website berikut: <br>
-<a href="ts-daikokuten-web-app.vercel.app">Daikokuten Web-App</a>
+[Website Daikokuten](https://ts-daikokuten-web-app.vercel.app/)
