@@ -29,7 +29,7 @@ body {
 }
 
 .img {
-    background-image: url("assets/food/footer.jpg");
+    background-image: url("public/assets/food/footer.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -63,7 +63,7 @@ body {
 ::-webkit-scrollbar-track {
     background: #ffedd5;
     border: 0 none #ffedd5;
-    border-radius: 50;
+    border-radius: 50px;
 }
 
 ::-webkit-scrollbar-track:hover {
