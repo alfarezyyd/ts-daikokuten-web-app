@@ -29,7 +29,7 @@ body {
 }
 
 .img {
-    background-image: url("public/footer.jpg");
+    background-image: url("footer.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
